@@ -1,4 +1,5 @@
 const rollup = require('rollup')
+const config = require('../../config')
 const path = require('path')
 const { resultLog } = require('../utils')
 const {
@@ -10,6 +11,9 @@ const {
 
 const inputOptions = async () => ({
   input: path.resolve(PROJECT_DIR, 'components/index.js'),
+  output:{
+  	sourcemap: config.build.productionSourceMap,
+  },
   external: ['vue'],
   plugins: await rollupPluginFactory(),
   onwarn (warning) {
